@@ -1,10 +1,34 @@
-# Getting Started with Create React App and Redux
+## Built With
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+This project was built using these technologies.
+
+- React.js
+- JavaScript
+- HTML
+- CSS3
+- TailwindCSS
+- VsCode
+
+## 🛠 Installation and Setup Instructions
+
+cd ecommerce-backend
+npm install
+cd react-ecommerce
+npm install
+
+1. Installation: `npm install`
+
+2. In the project directory, you can run: `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The page will reload if you make edits.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### start the ecommerce-backend project using `node Server.js`
 
 ### `npm start`
 
@@ -44,3 +68,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
