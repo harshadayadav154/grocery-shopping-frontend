@@ -12,3 +12,17 @@ export const createOrder = async (orderData) => {
     throw new Error(error.response.data.message);
   }
 };
+
+// Function to fetch orders by user email
+export const fetchOrdersByEmail = async (email) => {
+  try {
+    console.log(email);
+    // Make GET request to your backend API endpoint
+    const response = await axios.get(
+      `${API_BASE_URL}/order?email=${email}`
+    );
+    return response.data; // Return response data
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};

@@ -38,7 +38,6 @@ function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("red", redirectToPage);
       // Redirect the user to the desired page after successful login
       navigate(redirectToPage || "/");
     }
