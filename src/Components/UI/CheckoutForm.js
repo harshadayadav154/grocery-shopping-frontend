@@ -37,8 +37,9 @@ function CheckoutForm() {
       placeOrder({
         user: { username: name, email },
         shippingAddress: userInfo.address,
-        items: { cartItems },
+        items: { ...cartItems },
         totalPrice,
+        totalWithShipping
       })
     );
     navigate("/order");

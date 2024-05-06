@@ -12,7 +12,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <div className="bg-gray-100 min-h-screen">
+        <App />
+      </div>
     </Provider>
   </React.StrictMode>
 );

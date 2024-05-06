@@ -29,6 +29,8 @@ export const orderSlice = createSlice({
   },
 });
 
+export const selectOrders = (state) => state.order.myOrders;
+
 export const { orderLoading, orderSuccess, orderFailure, setMyOrders } =
   orderSlice.actions;
 
