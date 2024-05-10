@@ -26,6 +26,7 @@ function Navbar() {
 
   // Function to handle sign-out
   const handleSignOut = () => {
+    localStorage.removeItem("User");
     dispatch(logout()); // Dispatch the signOut action
   };
 

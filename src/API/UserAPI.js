@@ -21,3 +21,12 @@ export const loginUser = async (userData) => {
     throw error.response.data.message;
   }
 };
+
+export const getUser = async (userEmail) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/user/email=${userEmail}`);
+    return response.data;
+  } catch (error) {
+    throw error.response.data.message;
+  }
+};
