@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid"; // Import ChevronUpIcon
 
 // Importing UI components
 import Product from "../UI/Product";
@@ -18,6 +18,7 @@ const ProductList = () => {
   const categories = useSelector(selectProducts);
   const status = useSelector(selectProductsStatus);
   const [sortBy, setSortBy] = useState(""); // State to store sorting option
+  const [sortOrder, setSortOrder] = useState("asc"); // State to store sorting order
 
   const sortOptions = [
     { name: "Name", value: "name" },
@@ -35,7 +36,12 @@ const ProductList = () => {
   }, [status, dispatch]);
 
   const handleSortChange = (value) => {
-    setSortBy(value);
+    if (value === sortBy) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(value);
+      setSortOrder("asc");
+    }
   };
 
   const sortedProducts = categories.reduce((accumulator, category) => {
@@ -43,9 +49,17 @@ const ProductList = () => {
   }, []);
 
   if (sortBy === "price") {
-    sortedProducts.sort((a, b) => a.price - b.price);
+    sortedProducts.sort((a, b) =>
+      sortOrder === "asc" ? a.price - b.price : b.price - a.price
+    );
   } else if (sortBy === "name") {
-    sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+    sortedProducts.sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
   }
 
   return (
@@ -59,10 +73,21 @@ const ProductList = () => {
             <div>
               <Menu.Button className="group inline-flex justify-center text-md font-medium text-gray-700 hover:text-gray-900">
                 Sort
-                <ChevronDownIcon
-                  className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                  aria-hidden="true"
-                />
+                {sortBy && (
+                  <Fragment>
+                    {sortOrder === "asc" ? (
+                      <ChevronDownIcon
+                        className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <ChevronUpIcon
+                        className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Fragment>
+                )}
               </Menu.Button>
             </div>
 
@@ -80,18 +105,20 @@ const ProductList = () => {
                   {sortOptions.map((option) => (
                     <Menu.Item key={option.name}>
                       {({ active }) => (
-                        <button
-                          onClick={() => handleSortChange(option.value)}
-                          className={classNames(
-                            sortBy === option.value
-                              ? "font-medium text-gray-900"
-                              : "text-gray-500",
-                            active ? "bg-gray-100" : "",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          {option.name}
-                        </button>
+                        <div className="flex items-baseline justify-flex-start ">
+                          <button
+                            onClick={() => handleSortChange(option.value)}
+                            className={classNames(
+                              sortBy === option.value
+                                ? "font-medium text-gray-900"
+                                : "text-gray-500",
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            {option.name}
+                          </button>
+                        </div>
                       )}
                     </Menu.Item>
                   ))}
