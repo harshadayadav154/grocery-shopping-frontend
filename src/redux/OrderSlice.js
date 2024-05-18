@@ -39,7 +39,6 @@ export const placeOrder = (orderData) => async (dispatch) => {
     dispatch(orderLoading());
     // Call API to create order
     const response = await createOrder(orderData);
-    console.log(response); // Handle response as needed
     dispatch(orderSuccess());
   } catch (error) {
     dispatch(orderFailure(error.message));
@@ -51,7 +50,6 @@ export const fetchOrders = (email) => async (dispatch) => {
     dispatch(orderLoading());
     // Call API to fetch orders by user email
     const response = await fetchOrdersByEmail(email);
-    console.log(response);
     dispatch(setMyOrders(response.orders));
     dispatch(orderSuccess(response.orders));
   } catch (error) {

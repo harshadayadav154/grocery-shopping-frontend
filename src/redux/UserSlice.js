@@ -40,7 +40,6 @@ export const { setUser, setError, setRedirectToPage, clearError, logout } =
 
 export const register = (userData) => async (dispatch) => {
   try {
-    console.log("userData", userData);
     const response = await registerUser(userData);
     localStorage.setItem("user", response.userData._id);
     dispatch(setUser(userData));
